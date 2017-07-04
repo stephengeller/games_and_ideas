@@ -30,7 +30,7 @@ def guess
 
       playagain = false
       puts "play again?"
-      wronganswercounter = 0
+      wronganswercounter = 0git
 
       while not playagain
         answer = gets.chomp.downcase
