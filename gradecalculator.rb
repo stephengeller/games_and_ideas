@@ -6,7 +6,6 @@ $secondyear = [
     ["PSY239", 68, 20],
     ["PSY246", 61, 20],
     ["JNL210", 55, 20]
-    # ["WHOLE YEAR", 63.5, 120]
 ]
 
 $thirdyear = [
@@ -96,21 +95,14 @@ def gradessum(year)
 end
 
 def describe_year(year)
-
   allgrades = 0
   allcredits = 0
   numberofgrades = 0
   averagegrade = 0
   nummodules = 0
-
   year.each do |name, grade, credits|
     allgrades += grade.to_f
     allcredits += credits
-    # if credits == 20
-    #   numberofgrades += (grade.to_f*2)/10
-    # elsif credits == 10
-    #   numberofgrades+= grade.to_f/10
-    # end
     nummodules +=1
     numberofgrades += ((grade.to_f)*(credits/10))/10
     averagegrade = (((numberofgrades.to_f)/allcredits)*100).round(1)
@@ -139,15 +131,13 @@ def addtoyear(year)
   print "\n" + "#{year}" + "\n\n"
 end
 
-#describe_year($secondyear)
-# puts "\n\n"
+
+
 describe_year($thirdyear)
 describe_year($secondyear)
 puts "\n\n"
 puts $secondyeargrade
-#puts "\n\n"
 sputs "Your grade for this year is #{$thirdyeargrade}%"
-
 $overallgrade = (($secondyeargrade.to_f+($thirdyeargrade.to_f*2)).to_f)/3
 puts "\n\n"
 puts "Your OVERALL grade combined is #{$overallgrade}"

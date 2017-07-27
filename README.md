@@ -1,87 +1,28 @@
-# Project Title
+# Games and Ideas
 
-One Paragraph of project description goes here
+This contains small projects created before the start of the Makers Academy bootcamp in London. These 
 
-## Getting Started
+## Current project list
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+- gradecalculator.rb: Built to work out my grade averages throughout university. Uses multiple methods to calculate per-year averages, and can be used to tell the user what is required to achieve certain grades. Currently lacking a user interface however!
+- pickanumber.rb: Simple game. Can you guess the number the computer is thinking of?
+- multifunctioncomp.rb: Fully fledged game computer! Has temporary CRUD functionality, allows you to play 3 independent games (one being pickanumber) and has a user interface to travel through the program. Currently lacks support in making CRUD changes permanent however.
 
-### Prerequisites
+### Deployment
 
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
+Once the directory is on your computer, all you have to do is execute the file from the terminal! For example:
 
 ```
-Give the example
+$ ruby multifunctioncomp.rb
 ```
 
-And repeat
 
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+Ruby!
 
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+* **Stephen Geller** - [GitHub CV](https://github.com/stephengeller/CV)

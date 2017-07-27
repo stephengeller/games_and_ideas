@@ -30,7 +30,7 @@ def guess
 
       playagain = false
       puts "play again?"
-      wronganswercounter = 0git
+      wronganswercounter = 0
 
       while not playagain
         answer = gets.chomp.downcase
@@ -55,75 +55,54 @@ def guess
   end
 end
 
+def div10(n)
+  num10 = n/(rand(10)+1)
+  num10
+end
+
+def mult10(n)
+  num = n*(rand(10)+1)
+  num
+end
+
 def randomnumbergame
-
-  def div10(n)
-    # Number gets divided by a random number between 1 and 10
-    num10 = n/(rand(10)+1)
-    num10
-  end
-
-  def mult10(n)
-    # Number gets multiplied by a random number between 1 and 10
-    num = n*(rand(10)+1)
-    num
-  end
-
   stop = false
+  playagain = false
 
-  while (not stop)
+  until stop
+    puts " WELCOME TO THE RANDOM NUMBER GAME! ".center(50, '*-*')
     puts "Please select a difficulty: Easy, medium or hard."
     difficulty = gets.chomp
-    puts "Please type a number between 1 and 10."
-
+    puts "Please type a number between 1 and 100."
     number = gets.chomp.to_i
-    sleep(3/4)
-    puts "Randomising..."
-    sleep(4/3)
+    sleep(1/2)
+    puts "Randomising...\n\n"
+    sleep(1/3)
     # Randomly divides or multiplies a number!
     randnum = [div10(number), mult10(number)].sample
-    if difficulty.downcase == "hard"
-      randnum = randnum*((rand(10)+1)*(rand(10)+1))
-    elsif difficulty.downcase == "medium"
-      randnum = randnum*(rand(10)+1)
-      elsif difficulty.downcase == "easy"
-      else
-    end
-    puts "Your number is " + "#{randnum}"
+    randnum = randnum*((rand(10)+1)*(rand(10)+1)) if difficulty.downcase.include? == "hard"
+    randnum = randnum*(rand(10)+1) if difficulty.downcase.include? "med"
+    puts "Your number is #{randnum}"
     sleep(3/4)
-    puts "What number affected this?"
-    affectnum = gets.chomp
-    affectnum = affectnum.to_i
+    puts "What number affected this? Use 1 decimal place if numbers need decimals"
+    affectnum = gets.chomp.to_f
     a1 = (randnum.to_f / number.to_f)
-    #puts a1
-    a2 = (number.to_f / randnum.to_f)
-   # puts a2
-    if (affectnum == a1.round(2)) or (affectnum == a2.round(2))
-      puts "Correct!"
-      else puts "Nope! The answer could have been #{a1} or #{a2}"
-    end
-
-    playagain = false
+    a2 = (number.to_f / randnum.to_f.round(1))
+    ((affectnum.to_f == a1.round(1)) || (affectnum.to_f == a2.round(1))) ? (puts "Correct!") : (puts "Nope! The answer could have been #{a1} or #{a2.round(1)}")
     puts "play again?"
-    wronganswercounter = 0
-
-  while not playagain
-    answer = gets.chomp.downcase
-
-    if answer == "yes"
-      puts "Great!"
-      playagain = true
-    elsif answer == "no"
-      puts "cool man"
-      stop = true
-      playagain = true
-    elsif wronganswercounter >= 3
-        puts "Whatever."
+    until playagain
+      answer = gets.chomp.downcase
+      if answer == "yes"
+        puts "Great!"
+        playagain = true
+      elsif answer == "no"
+        puts "Thanks for playing!\n\n".center(50, '*-*')
         stop = true
         playagain = true
-    else
-      puts "What? Please select yes or no."
-      wronganswercounter += 1
+        gamemenu
+      else
+        puts "What? Please select yes or no."
+        #answer = gets.chomp.downcase
       end
     end
   end
@@ -175,122 +154,104 @@ end
 
 def gamemenu
 
-$endgame = true
+  puts " GAME MENU ".center(50, '*-*')
 
-while $endgame == true
-#puts "#{$menucounter}"
-  if $menucounter > 0
-    break
-  end
+  $endgame = true
 
-  puts "what game do you want to play? Type \"mainmenu\" to go back!"
+  puts "What game do you want to play? Type 'mainmenu' to go back!"
   gamestart = gets.chomp
-  if gamestart.include? "random" or gamestart.include? "1"
-    randomnumbergame
-  elsif gamestart.include? "pickanumber" or gamestart.include? "2"
-    pickanumber
-  elsif gamestart.include? "guess" or gamestart.include? "3"
-    guess
-  elsif gamestart.downcase.include? ("stop") or gamestart.downcase.include?("exit") or gamestart.downcase.include?("quit") or gamestart.downcase.include?("mainmenu")
-    $menucounter += 1
-    puts "#{$menucounter}"
-    mainmenu
-    #puts "See ya!"
-    #endgame == true
-    #break
-  elsif gamestart.include? "list"
-    $gameslist.each do |game, rating|
-      puts "#{game}: #{rating} out of 10"
+  while $endgame == true
+  #puts "#{$menucounter}"
+    if $menucounter > 0
+      break
     end
-  else puts "Invalid input!"
+    if gamestart.include? "random" or gamestart.include? "1"
+      randomnumbergame
+    elsif gamestart.include? "pickanumber" or gamestart.include? "2"
+      pickanumber
+    elsif gamestart.include? "guess" or gamestart.include? "3"
+      guess
+    elsif gamestart.downcase.include? ("stop") or gamestart.downcase.include?("exit") or gamestart.downcase.include?("quit") or gamestart.downcase.include?("mainmenu")
+      break
+    elsif gamestart.include? "list"
+      $gameslist.each do |game, rating|
+        puts "#{game}: #{rating} out of 10"
+      end
+    else puts "Invalid input! You can type 'random', 'pickanumber', 'guess' or stop."
+      gamestart = gets.chomp
+    end
   end
-end
 end
 
 def mainmenu
   $endgame == false
   choosing = false
-  puts "***MAIN MENU***"
+  puts " MAIN MENU ".center(50, '*-*')
   puts " "
-  puts "What would you like to do? You can see what games there are, \nplay those games, and even recommend new ones to the developers! \nYou can also update ratings of games that already exist."
-  while not choosing
+  #puts "What would you like to do? You can see what games there are, \nplay those games, and even recommend new ones to the developers! \nYou can also update ratings of games that already exist."
 
-choice = gets.chomp
-choice == choice.downcase
-
-  if choice.include? "play"
-      puts "***GAME MENU***"
+  until choosing
+    puts "What would you like to do? You can see what games there are,".center(50)
+    puts "play those games, and even recommend new ones to the developers!".center(50)
+    puts "You can also update ratings of games that already exist.".center(50)
+    choice = gets.chomp.downcase
+    if choice.include? "play"
       puts " "
       if $menucounter != 0
-      $menucounter -= 1
+        $menucounter -= 1
       end
-      #puts "#{$menucounter} (in mainmenu)"
       gamemenu
-
-
-  elsif choice.include? "list"
-        $gameslist.each do |game, rating|
-        puts "#{game}: #{rating} out of 10"
-        end
-
-
-  elsif choice.include? "add"
+    elsif choice.include? "list"
+      $gameslist.each do |game, rating|
+        puts " #{game} ".center(20, "*") + ": #{rating} out of 10"
+      end
+    elsif choice.include? "add"
       puts "What game do you want to add?"
       title = gets.chomp
-      if $gameslist[title.to_sym].nil? && !title.downcase.include?("call of duty")
-        puts "What's the rating? (Type a number between 0 and 10)"
-        rating = gets.chomp
-        if rating.to_i > 7
-          puts "Wow, #{rating}? This must be a good game!"
-          puts ""
-        end
-        $gameslist[title.to_sym] = rating.to_sym
-        puts "#{title} has been added with a rating of #{rating}!"
-        puts ""
-      elsif title.downcase.include? "call of duty"
-        puts "OH HELL NAW"
-        puts ""
-      else puts "That game is already there!"
-      end
-
-  elsif choice.include? "delete"
-      deleting = true
-      while deleting == true
-      puts "What game would you like to delete?"
-      #$gameslist.each do |game, rating|
-      #  puts "#{game}"
-      #end
-      title = gets.chomp
-      if title == "exit" or title == "quit"
-        deleting == false
-        break
-      elsif $gameslist[title].nil?
-          puts "That game does not exist! \n "
-        else
-          $gameslist.each do |game, rating|
-            if rating.to_i > 7
-            puts "Wow. With a rating of #{rating}, that one will be missed!"
-            end
-          end
-          $gameslist.delete(title)
-          puts "#{title} has been deleted."
-          deleting == false
-          break
-        end
-      end
-
-
-  elsif choice.include? "quit"
-        puts "Thanks for playing!"
+      add_game(title)
+    elsif choice.include? "delete"
+      delete_game
+    elsif choice.include? "quit"
+      puts "Thanks for playing!"
       choosing == true
       break
-  elsif choice.include? "help"
-    puts "You can either type \"play\", \"add\", \"list\" or \"delete\". You can also type \"quit\" to quit the game!"
-
-  else puts "Invalid input. Type \"help\" if you don't know what to type!"
-      puts ""
+    elsif choice.include? "help"
+      puts "You can either type 'play', 'add', 'list' or 'delete'."
+      puts "You can also type 'quit' to quit the game!"
+    else puts "Invalid input. Type 'help' if you don't know what to type!\n\n"
+    end
   end
 end
+
+def add_game(title)
+  if $gameslist[title.to_sym].nil? && !title.downcase.include?("call of duty")
+    puts "What's the rating? (Type a number between 0 and 10)"
+    rating = gets.chomp
+    puts "Wow, #{rating}? This must be a good game! \n\n" if rating.to_i > 7
+    $gameslist[title.to_sym] = rating.to_sym
+    puts "#{title} has been added with a rating of #{rating}!"
+    puts ""
+  elsif title.downcase.include? "call of duty"
+    puts "OH HELL NAW"
+    puts ""
+  else puts "That game is already there!"
+  end
+end
+
+def delete_game
+  deleting = true
+  while deleting
+    puts "What game would you like to delete?"
+    $gameslist.each {|game, rating| puts "#{game}"}
+    title = gets.chomp.to_s.to_sym
+    break if (title == "exit") || (title == "quit")
+    puts "That game does not exist! \n " if $gameslist[title].nil?
+    $gameslist.each {|game, rating| puts "Wow. With a rating of #{rating}, that one will be missed!" if rating.to_i > 7 && game == title}
+    #end
+    $gameslist.delete(title)
+    puts "The game '#{title}' has been deleted from the database."
+    break
+  end
 end
 
 mainmenu
