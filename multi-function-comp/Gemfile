@@ -1,0 +1,10 @@
+source :rubygems
+
+ruby '2.4.1'
+
+gem 'flog'
+gem 'rubocop'
+gem 'rspec'
+gem 'pry'
+gem 'simplecov'
+gem 'simplecov-console'
