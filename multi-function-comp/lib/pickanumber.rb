@@ -76,7 +76,3 @@ class PickANumber
     puts 'Guess again!'
   end
 end
-
-s = PickANumber.new
-
-s.play

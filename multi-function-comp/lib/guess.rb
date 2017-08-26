@@ -12,6 +12,8 @@ class Guesser
   MIN = 1
   GUESS_LIMIT = 10
 
+  attr_reader :guess_num
+
   def initialize(input = Kernel)
     @input = input
     @max_num = MAX
@@ -25,7 +27,8 @@ class Guesser
   end
 
   def randomise(num = @range)
-    @guess_num = (@min_num + rand(num).to_i)
+    @guess_num = ((@min_num + rand(num-1)+1).to_i)
+    @guess_num = @min_num if @range <= 1
   end
 
   def intro
@@ -38,6 +41,18 @@ class Guesser
 
   def calculate_range
     @range = @max_num - @min_num
+    @range = 0 if @range <= 1
+  end
+
+  def correct_guess?
+    input = @input.gets.chomp.downcase
+    too_high if input == 'lower'
+    too_low if input == 'higher'
+    if input == ('equal' || 'quit')
+      puts 'I win!'
+      return true
+    end
+    false
   end
 
   def play
@@ -47,7 +62,6 @@ class Guesser
     loop do
       ask
       break if correct_guess? || guess_limit_reached
-      @guesses += 1
     end
     play_again?
   end
@@ -65,14 +79,24 @@ class Guesser
     randomise
   end
 
+  def add_guess
+    p "min num is #{@min_num}"
+    p "max num is #{@max_num}"
+    p "range is #{@range}"
+    p "guess is #{guess_num}"
+    @guesses += 1
+  end
+
   def too_low
     @min_num = @guess_num
     range_and_randomise
+    add_guess
   end
 
   def too_high
     @max_num = @guess_num
     range_and_randomise
+    add_guess
   end
 
 
@@ -87,18 +111,6 @@ class Guesser
     puts 'Thanks for playing!'
   end
 
-  def correct_guess?
-    input = @input.gets.chomp.downcase
-    too_high if input == 'lower'
-    too_low if input == 'higher'
-    if input == 'equal'
-      puts 'I win!'
-      return true
-    end
-    false
-  end
+
 
 end
-
-s = Guesser.new
-s.play

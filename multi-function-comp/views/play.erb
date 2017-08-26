@@ -1,0 +1,22 @@
+<h1> PLAY! </h1>
+
+<h2 style="color: darkslateblue"><%= "Welcome  #{@player.name}!" unless @player.nil? || @player.name.empty? %> </h2>
+
+<h2>Pick a number between 1 and 1000, and keep it in your head!</h2>
+
+<h2> Is your number <%= @game.guess_num %>? </h2>
+
+<form action="/higher" method="post">
+  <input type="hidden", name="action", value="higher" />
+  <input type="submit" value="Higher">
+</form>
+
+<form action="/equal" method="post">
+  <input type="hidden", name="action", value="equal" />
+  <input type="submit" value="Equal">
+</form>
+
+<form action="/lower" method="post">
+  <input type="hidden", name="action", value="lower" />
+  <input type="submit" value="Lower">
+</form>
