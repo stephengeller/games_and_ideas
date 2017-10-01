@@ -1,6 +1,6 @@
 # Games and Ideas
 
-This contains small projects created before the start of the Makers Academy bootcamp in London. These 
+This contains small projects created before the start of the Makers Academy bootcamp in London. These provide a good insight into how I transitioned from procedural method-based programming to the preferred OOD since starting the course!
 
 ## Current project list
 
@@ -13,9 +13,17 @@ This contains small projects created before the start of the Makers Academy boot
 Once the directory is on your computer, all you have to do is execute the file from the terminal! For example:
 
 ```
+$ git clone git@github.com:stephengeller/games_and_ideas.git
+$ cd games_and_ideas
 $ ruby multifunctioncomp.rb
 ```
+To play the individual games (built using the class system), follow the first two steps above, then:
 
+```
+$ cd multi-function-comp
+$ cd lib
+$ ruby <any of the three games>
+```
 
 
 ## Built With
